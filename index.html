@@ -21,6 +21,8 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         .title {
             font-size: 4em;
@@ -76,7 +78,11 @@
             font-size: 1.2em;
             color: #003AE7;
             max-width: 600px;
-            margin: 20px;
+            margin: 20px auto;
+            padding: 20px;
+            height: auto;
+            position: relative;
+            padding-bottom: 120px;
         }
         .back-button {
             cursor: pointer;
@@ -87,6 +93,8 @@
             border: 2px solid #003AE7;
             border-radius: 20px;
             transition: all 0.3s ease;
+            margin-bottom: 80px;
+            display: inline-block;
         }
         .back-button:hover {
             background-color: #003AE7;
@@ -225,6 +233,7 @@
             margin-top: 40px;
             padding-top: 30px;
             border-top: 1px solid rgba(0, 58, 231, 0.1);
+            margin-bottom: 40px;
         }
 
         .contact-section h2 {
@@ -246,6 +255,65 @@
             padding: 10px 20px;
             border-radius: 8px;
             transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .about-page {
+                font-size: 1em;
+                margin: 10px;
+                padding: 15px;
+                padding-bottom: 120px;
+            }
+
+            .about-section h1 {
+                font-size: 1.8em;
+                margin-top: 40px;
+            }
+
+            .about-section p {
+                font-size: 1em;
+                line-height: 1.5;
+                margin-bottom: 1.2em;
+            }
+
+            .contact-section {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+
+            .contact-section h2 {
+                font-size: 1.3em;
+            }
+
+            .contact-link {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+
+            .back-button {
+                margin-bottom: 80px;
+                display: inline-block;
+            }
+
+            body {
+                height: auto;
+                min-height: 100vh;
+            }
+        }
+
+        .about-section h1 {
+            margin-top: 60px;  /* Increased from previous value */
+            color: #003AE7;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .about-section h1 {
+                margin-top: 50px;  /* Slightly less on mobile but still spacious */
+                font-size: 1.8em;
+                margin-bottom: 25px;
+            }
         }
     </style>
 </head>
@@ -324,11 +392,13 @@
         function showAbout() {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('about-page').style.display = 'block';
+            document.querySelector('.about-link').style.display = 'none';
         }
 
         function showMain() {
             document.getElementById('about-page').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
+            document.querySelector('.about-link').style.display = 'block';
         }
     </script>
 </body>
