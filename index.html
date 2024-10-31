@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Animation Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-family: 'Jost', sans-serif;
+            text-align: center;
+        }
+        .title {
+            font-size: 4em;
+            font-weight: bold;
+            color: #003AE7;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            font-size: 1.5em;
+            color: #003AE7;
+            margin-bottom: 30px;
+        }
+        .phone-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #003AE7;
+            margin-bottom: 10px;
+        }
+        #typed {
+            font-size: 1.5em;
+            color: #003AE7;
+            margin-top: 20px;
+        }
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            font-size: 1.4em;
+            color: #003AE7;
+        }
+        .about-page {
+            display: none;
+            font-size: 1.2em;
+            color: #003AE7;
+            max-width: 600px;
+            margin: 20px;
+        }
+        .back-button {
+            cursor: pointer;
+            color: #003AE7;
+            font-size: 1em;
+            text-decoration: underline;
+        }
+        .about-link {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            color: #003AE7;
+            font-size: 1.4em;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="about-link" onclick="showAbout()">About</div>
+    
+    <div id="main-content">
+        <div class="title">JEANIE</div>
+        <div class="subtitle">Your Personal AI Assistant, Just a Phone Call Away</div>
+        <div class="phone-number">+44 1666 333763</div>
+        <span id="typed"></span>
+    </div>
+
+    <div id="about-page" class="about-page">
+        <div class="about-section">
+            <h1>About Jeanie</h1>
+
+            <p>Jeanie is your personal AI assistant, available 24/7 through a simple phone call. Whether you need directions to the nearest pharmacy, want to check what's playing at your local theatre, or need help with daily reminders, Jeanie is here to help with just a conversation. No apps, no complicated technology – just your voice and a phone line.</p>
+
+            <p>We believe everyone deserves access to AI assistance, regardless of their technical expertise or device limitations. That's why we created Jeanie to work through the most natural form of communication – voice. By making advanced technology accessible through any phone, from basic landlines to smartphones, we're building a more inclusive digital future where powerful AI assistance is just a call away. As we continue to develop and improve, every conversation with Jeanie helps us create a service that truly works for everyone, everywhere.</p>
+        </div>
+        <div class="back-button" onclick="showMain()">Back to Home</div>
+    </div>
+
+    <footer>
+        <div style="padding-left: 20px;">&copy; Jeanie 2024</div>
+        <div style="padding-right: 10px;">
+            <a href="mailto:hello.jeanie@icloud.com">hello.jeanie@icloud.com</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var typed = new Typed("#typed", {
+                strings: ["Whats on at the theatre tonight?", "Where is the nearest open pharmacy?", "Remind me to call mum tomorrow.", "When is the next bus to London?", "Any local events on this weekend?"],
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: true,
+                showCursor: false
+            });
+        });
+
+        function showAbout() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('about-page').style.display = 'block';
+        }
+
+        function showMain() {
+            document.getElementById('about-page').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
