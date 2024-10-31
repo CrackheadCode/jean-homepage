@@ -19,23 +19,37 @@
             background-color: #f5f5f5;
             font-family: 'Jost', sans-serif;
             text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .title {
             font-size: 4em;
             font-weight: bold;
             color: #003AE7;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        .title:hover {
+            color: #002bb1;
         }
         .subtitle {
             font-size: 1.5em;
             color: #003AE7;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            animation: fadeInDown 0.8s ease-out 0.2s backwards;
         }
         .phone-number {
             font-size: 3em;
             font-weight: bold;
             color: #003AE7;
             margin-bottom: 10px;
+            transition: transform 0.2s ease;
+            animation: fadeInDown 0.8s ease-out 0.4s backwards;
+            letter-spacing: 2px;
+        }
+        .phone-number:hover {
+            transform: scale(1.05);
         }
         #typed {
             font-size: 1.5em;
@@ -43,13 +57,18 @@
             margin-top: 20px;
         }
         footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
             display: flex;
             justify-content: space-between;
-            padding: 0 40px;
-            font-size: 1.4em;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(0, 58, 231, 0.1);
+            font-size: 0.9em;
             color: #003AE7;
         }
         .about-page {
@@ -64,6 +83,14 @@
             color: #003AE7;
             font-size: 1em;
             text-decoration: underline;
+            padding: 8px 16px;
+            border: 2px solid #003AE7;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #003AE7;
+            color: white;
         }
         .about-link {
             position: absolute;
@@ -73,6 +100,152 @@
             color: #003AE7;
             font-size: 1.4em;
             text-decoration: underline;
+            padding: 8px 16px;
+            border: 2px solid #003AE7;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .about-link:hover {
+            background-color: #003AE7;
+            color: white;
+        }
+        .about-page p {
+            line-height: 1.6;
+            margin-bottom: 1.5em;
+        }
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3em;
+            }
+            
+            .phone-number {
+                font-size: 2em;
+            }
+            
+            footer {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+            }
+        }
+        .call-details {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            align-items: center;
+            color: #003AE7;
+            font-size: 1.1em;
+            margin: 15px 0 25px 0;
+            opacity: 0.9;
+        }
+
+        .call-details i {
+            color: #00b300;
+            margin: 0 5px 0 15px;
+        }
+
+        .example-questions {
+            background: rgba(0, 58, 231, 0.05);
+            padding: 25px 35px;
+            border-radius: 15px;
+            margin-top: 25px;
+            box-shadow: 
+                0 4px 12px rgba(0, 58, 231, 0.08),
+                0 1px 3px rgba(0, 58, 231, 0.05);
+            position: relative;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInDown 0.8s ease-out 0.8s backwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .example-questions:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 16px rgba(0, 58, 231, 0.12),
+                0 2px 4px rgba(0, 58, 231, 0.08);
+        }
+
+        #typed {
+            font-size: 1.5em;
+            color: #003AE7;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .quote-mark {
+            font-family: Georgia, serif;
+            font-size: 2em;
+            color: rgba(0, 58, 231, 0.3);
+            line-height: 0;
+            vertical-align: middle;
+            padding: 0 5px;
+        }
+
+        @media (max-width: 768px) {
+            .example-questions {
+                padding: 20px 25px;
+                margin: 15px;
+            }
+            #typed {
+                font-size: 1.2em;
+            }
+            .quote-mark {
+                font-size: 1.6em;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Add some bottom padding to main content to prevent footer overlap */
+        #main-content {
+            padding-bottom: 60px;  /* Adjust based on footer height */
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 12px 15px;
+                font-size: 0.8em;
+            }
+        }
+
+        .contact-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 58, 231, 0.1);
+        }
+
+        .contact-section h2 {
+            color: #003AE7;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .contact-options {
+            margin-top: 20px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #003AE7;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
     </style>
 </head>
@@ -83,32 +256,64 @@
         <div class="title">JEANIE</div>
         <div class="subtitle">Your Personal AI Assistant, Just a Phone Call Away</div>
         <div class="phone-number">+44 1666 333763</div>
-        <span id="typed"></span>
+        <div class="call-details">
+            <span><i class="fa fa-check"></i> Free calls</span>
+            <span><i class="fa fa-check"></i> No account needed</span>
+        </div>
+        <div class="example-questions">
+            <span class="quote-mark">"</span><span id="typed"></span><span class="quote-mark">"</span>
+        </div>
     </div>
 
     <div id="about-page" class="about-page">
         <div class="about-section">
             <h1>About Jeanie</h1>
 
-            <p>Jeanie is your personal AI assistant, available 24/7 through a simple phone call. Whether you need directions to the nearest pharmacy, want to check what's playing at your local theatre, or need help with daily reminders, Jeanie is here to help with just a conversation. No apps, no complicated technology – just your voice and a phone line.</p>
+            <p>Jeanie is your friendly AI assistant, available anytime through a simple phone call. Need to find a late-night pharmacy? Want to know what's playing at the theatre? Looking for a reminder to call your mum? Just pick up the phone and ask – no apps, no passwords, just a natural conversation.</p>
 
-            <p>We believe everyone deserves access to AI assistance, regardless of their technical expertise or device limitations. That's why we created Jeanie to work through the most natural form of communication – voice. By making advanced technology accessible through any phone, from basic landlines to smartphones, we're building a more inclusive digital future where powerful AI assistance is just a call away. As we continue to develop and improve, every conversation with Jeanie helps us create a service that truly works for everyone, everywhere.</p>
+            <p>We believe AI assistance should be available to everyone, regardless of tech-savviness or the type of phone they use. That's why we created Jeanie to work through the most natural interface of all – voice. Whether you're calling from a landline or smartphone, Jeanie is here to help make your day a little easier.</p>
+
+            <p>And this is just the beginning. Soon you'll be able to book rides, check medical symptoms, order food, and much more – all through a simple phone call. Jeanie's capabilities are expanding every day as we build new integrations and features to make your life easier.</p>
+
+            <p>While Jeanie is currently in beta and growing every day, we're excited to have you join us on this journey. Together, we're building a future where powerful, privacy-focused AI assistance is just a phone call away.</p>
+
+            <div class="contact-section">
+                <h2>Get in Touch</h2>
+                <p>We'd love to hear your feedback and suggestions as we continue to improve Jeanie.</p>
+                
+                <div class="contact-options">
+                    <a href="mailto:hello.jeanie@icloud.com" class="contact-link">
+                        <i class="fa fa-envelope"></i>
+                        hello.jeanie@icloud.com
+                    </a>
+                    <!-- Optional social links could go here later -->
+                </div>
+            </div>
         </div>
         <div class="back-button" onclick="showMain()">Back to Home</div>
     </div>
 
     <footer>
         <div style="padding-left: 20px;">&copy; Jeanie 2024</div>
-        <div style="padding-right: 10px;">
-            <a href="mailto:hello.jeanie@icloud.com">hello.jeanie@icloud.com</a>
-        </div>
+        <div style="padding-right: 10px;">hello.jeanie@icloud.com</div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var typed = new Typed("#typed", {
-                strings: ["Whats on at the theatre tonight?", "Where is the nearest open pharmacy?", "Remind me to call mum tomorrow.", "When is the next bus to London?", "Any local events on this weekend?"],
+                strings: [
+                    "What's the fastest route to Oxford Street right now?",
+                    "When does the pharmacy on High Street close today?",
+                    "Set a reminder for my dentist appointment tomorrow at 2pm",
+                    "What's the weather like this weekend?",
+                    "Find me a good Italian restaurant nearby",
+                    "What time is the next train to Cambridge?",
+                    "Is there a GP open near me?",
+                    "What movies are showing at the Odeon tonight?",
+                    "When does the post office close today?",
+                    "What's the best coffee shop open right now?"
+                ],
                 typeSpeed: 50,
                 backSpeed: 30,
                 loop: true,
