@@ -124,9 +124,9 @@
 
         .trust-badges {
             display: flex;
-            gap: 24px;
+            gap: 16px;
             background: rgba(74, 79, 255, 0.05);
-            padding: 16px 24px;
+            padding: 12px 20px;
             border-radius: 12px;
             margin-top: 32px;
             flex-wrap: wrap;
@@ -137,8 +137,10 @@
             align-items: center;
             gap: 8px;
             color: #666;
-            font-size: 0.85em;
-            padding: 4px 0;
+            font-size: 0.9em;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
         }
 
         .image-container {
@@ -156,7 +158,8 @@
         #features {
             max-width: 1200px;
             margin: 0 auto 120px;
-            padding: 0 48px;
+            padding: 80px 48px 0;
+            scroll-margin-top: 80px;
         }
 
         .features-title {
@@ -169,16 +172,15 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            gap: 24px;
         }
 
         .feature-card {
-            padding: 32px;
+            padding: 24px;
             background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
             transition: transform 0.2s ease;
-            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .feature-card:hover {
@@ -187,20 +189,19 @@
 
         .feature-icon {
             font-size: 2em;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #4A4FFF 0%, #3D42FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
         }
 
         .feature-card h3 {
-            font-size: 1.4em;
-            margin: 16px 0;
+            font-size: 1.2em;
+            margin: 12px 0;
+            color: #000;
         }
 
         .feature-card p {
             color: #666;
-            line-height: 1.5;
+            line-height: 1.4;
+            font-size: 1em;
             margin: 0;
         }
 
@@ -213,8 +214,11 @@
 
         .contact-container {
             padding: 60px;
-            background: #f8f8f8;
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
             border-radius: 24px;
+            border: 1px solid rgba(74, 79, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            text-align: center;
         }
 
         #contact h2 {
@@ -230,7 +234,9 @@
         }
 
         .contact-email {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             background: #000;
             color: #fff;
             padding: 16px 32px;
@@ -238,11 +244,17 @@
             font-size: 1.2em;
             text-decoration: none;
             font-weight: 500;
-            transition: transform 0.2s ease;
+            margin-top: 32px;
+            transition: all 0.2s ease;
         }
 
         .contact-email:hover {
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 1.2em;
         }
 
         .example-questions {
@@ -282,6 +294,214 @@
         .feature-card:nth-child(2) .feature-icon {
             content: "📍";
         }
+
+        .development-banner {
+            background: rgba(74, 79, 255, 0.08);
+            padding: 12px 24px;
+            border-radius: 12px;
+            margin: -20px auto 40px;
+            max-width: 300px;
+            text-align: center;
+            color: #4A4FFF;
+            font-weight: 500;
+            font-size: 0.95em;
+            border: 1px solid rgba(74, 79, 255, 0.15);
+        }
+
+        .features-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin: -30px auto 50px;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        .feedback-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .feedback-divider {
+            font-size: 1.2em;
+            color: #666;
+            margin: 0 16px;
+        }
+
+        .contact-phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #000;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-phone:hover {
+            transform: scale(1.02);
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 1024px) {
+            #main-content {
+                padding: 0 24px;
+                gap: 40px;
+            }
+
+            .title {
+                font-size: 3.5em;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 24px;
+            }
+
+            #main-content {
+                grid-template-columns: 1fr;
+                margin: 80px auto 40px;
+                text-align: center;
+            }
+
+            .subtitle, .example-questions {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .phone-section {
+                justify-content: center;
+            }
+
+            .trust-badges {
+                justify-content: center;
+            }
+
+            .image-container {
+                order: -1;
+            }
+
+            .hero-image {
+                max-width: 400px;
+            }
+
+            .contact-container {
+                padding: 40px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.8em;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        footer {
+            padding: 16px 24px;
+            color: #999;
+            font-size: 0.85em;
+            background: #f8f9ff;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 12px 16px;
+                font-size: 0.8em;
+            }
+        }
+
+        .feedback-form {
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(74, 79, 255, 0.2);
+            border-radius: 8px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1em;
+            background: white;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(74, 79, 255, 0.5);
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #4A4FFF 0%, #3D42FF 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-family: 'Jost', sans-serif;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 79, 255, 0.2);
+        }
+
+        .contact-container {
+            padding: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .feedback-options {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .feedback-divider {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -308,18 +528,18 @@
             
             <div class="phone-section">
                 <div class="phone-number">+44 1666 333763</div>
-                <a href="#" class="free-trial-link">Try 14 Days Free →</a>
+                <p class="beta-note">Call today - it's free!</p>
             </div>
             
             <div class="trust-badges">
                 <div class="trust-badge">
-                    <span>🔒 Secure Conversations</span>
+                    <span>🔒 Private & Secure</span>
                 </div>
                 <div class="trust-badge">
-                    <span>🕒 Always Available</span>
+                    <span>📞 No App Required</span>
                 </div>
                 <div class="trust-badge">
-                    <span>⚡ No Setup Required</span>
+                    <span>✨ No Sign-up Needed</span>
                 </div>
             </div>
         </div>
@@ -329,38 +549,44 @@
         </div>
     </div>
 
+    <div class="development-banner">
+        Currently under development
+    </div>
+
     <section id="features">
-        <h2 class="features-title">Why Choose Jeanie?</h2>
+        <h2 class="features-title">Smart Assistance for Independent Living</h2>
+        <p class="features-subtitle">Access help and support through simple voice calls - no apps or technical knowledge required.</p>
+        
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🗣️</div>
-                <h3>Natural Conversations</h3>
-                <p>Chat naturally as you would with a friend. No need to memorize commands or specific phrases - Jeanie understands your everyday language.</p>
+                <div class="feature-icon">👩‍⚕️</div>
+                <h3>Healthcare</h3>
+                <p>Book appointments, manage prescriptions, and arrange medical transport with clear, patient assistance.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🌐</div>
-                <h3>Smart Web Search</h3>
-                <p>Get instant answers to your questions, from quick facts to detailed research. Jeanie searches the web and summarizes information for you.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⏰</div>
-                <h3>Personal Assistant</h3>
-                <p>Set reminders, schedule appointments, and manage your calendar with simple voice commands. Never miss an important date again.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🚂</div>
-                <h3>Travel Updates</h3>
-                <p>Access real-time train schedules, traffic updates, and public transport information. Plan your journey with live travel insights.</p>
+                <div class="feature-icon">🔔</div>
+                <h3>Daily Support</h3>
+                <p>Get timely reminders for medications, appointments, and important tasks at times that suit you.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📍</div>
-                <h3>Local Discovery</h3>
-                <p>Find nearby restaurants, shops, and services with personalized recommendations based on your preferences and location.</p>
+                <h3>Local Services</h3>
+                <p>Stay connected with community events and find trusted local service providers.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Secure & Private</h3>
-                <p>Your conversations are protected with end-to-end encryption. Your privacy is our priority, with no data storage or third-party sharing.</p>
+                <div class="feature-icon">🚖</div>
+                <h3>Transport</h3>
+                <p>Book accessible transport and trusted taxi services for reliable travel assistance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛍️</div>
+                <h3>Shopping</h3>
+                <p>Get help with grocery lists, shopping assistance, and home delivery arrangements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Web Search</h3>
+                <p>Get instant answers to your questions with voice-activated web search and information lookup.</p>
             </div>
         </div>
     </section>
@@ -369,9 +595,46 @@
         <div class="contact-container">
             <h2>We'd Love Your Feedback</h2>
             <p>Help us make Jeanie even better for you. Share your thoughts or questions.</p>
-            <a href="mailto:hello@jeanie.ai" class="contact-email">hello@jeanie.ai</a>
+            
+            <form id="feedback-form" class="feedback-form" action="https://formspree.io/f/finlay.schlieper@icloud.com" method="POST">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <select id="contact-method" name="contact-method" required>
+                        <option value="" disabled selected>Preferred Contact Method</option>
+                        <option value="email">Email</option>
+                        <option value="phone">Phone</option>
+                    </select>
+                </div>
+                <div class="form-group contact-input" id="email-input">
+                    <input type="email" id="email" name="email" placeholder="Your Email">
+                </div>
+                <div class="form-group contact-input" id="phone-input" style="display: none;">
+                    <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+                </div>
+                <div class="form-group">
+                    <select id="feedback-type" name="feedback-type" required>
+                        <option value="" disabled selected>Select Feedback Type</option>
+                        <option value="suggestion">Suggestion</option>
+                        <option value="question">Question</option>
+                        <option value="issue">Issue Report</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Feedback</button>
+            </form>
         </div>
     </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Finlay Schlieper. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         const questions = document.querySelectorAll('.question-text');
@@ -384,6 +647,26 @@
         }
 
         setInterval(showNextQuestion, 3000);
+
+        // Handle contact method selection
+        document.getElementById('contact-method').addEventListener('change', function() {
+            const emailInput = document.getElementById('email-input');
+            const phoneInput = document.getElementById('phone-input');
+            const emailField = document.getElementById('email');
+            const phoneField = document.getElementById('phone');
+            
+            if (this.value === 'email') {
+                emailInput.style.display = 'block';
+                phoneInput.style.display = 'none';
+                emailField.required = true;
+                phoneField.required = false;
+            } else {
+                emailInput.style.display = 'none';
+                phoneInput.style.display = 'block';
+                emailField.required = false;
+                phoneField.required = true;
+            }
+        });
     </script>
 </body>
 </html>
