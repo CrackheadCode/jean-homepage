@@ -4,416 +4,386 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeanie | Your Personal AI Assistant</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             margin: 0;
-            background-color: #f5f5f5;
+            padding: 0;
             font-family: 'Jost', sans-serif;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
-            position: relative;
+            background: #f8f9ff;
+            color: #000;
         }
 
-        body.about-shown {
-            justify-content: flex-start;
-        }
-
-        .title {
-            font-size: 4em;
-            font-weight: bold;
-            color: #003AE7;
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-            animation: fadeInDown 0.8s ease-out;
-        }
-        .title:hover {
-            color: #002bb1;
-        }
-        .subtitle {
-            font-size: 1.5em;
-            color: #003AE7;
-            margin-bottom: 35px;
-            animation: fadeInDown 0.8s ease-out 0.2s backwards;
-        }
-        .phone-number {
-            font-size: 3em;
-            font-weight: bold;
-            color: #003AE7;
-            margin-bottom: 10px;
-            transition: transform 0.2s ease;
-            animation: fadeInDown 0.8s ease-out 0.4s backwards;
-            letter-spacing: 2px;
-        }
-        .phone-number:hover {
-            transform: scale(1.05);
-        }
-        #typed {
-            font-size: 1.5em;
-            color: #003AE7;
-            margin-top: 20px;
-        }
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+        header {
+            padding: 24px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            border-top: 1px solid rgba(0, 58, 231, 0.1);
-            font-size: 0.9em;
-            color: #003AE7;
-            z-index: 1000;
-        }
-        .about-page {
-            display: none;
-            font-size: 1.2em;
-            color: #003AE7;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            padding-top: 60px;
-            padding-bottom: 150px;
-            min-height: 100vh;
-            position: relative;
-            overflow-y: visible;
-        }
-        .back-button {
-            cursor: pointer;
-            color: #003AE7;
-            font-size: 1em;
-            text-decoration: underline;
-            padding: 8px 16px;
-            border: 2px solid #003AE7;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            margin-bottom: 80px;
-            display: inline-block;
-        }
-        .back-button:hover {
-            background-color: #003AE7;
-            color: white;
-        }
-        .about-link {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(248,248,255,0.95));
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            backdrop-filter: blur(8px);
             z-index: 1000;
-            cursor: pointer;
-            color: #003AE7;
+        }
+
+        .header-logo {
+            color: #000;
+            font-weight: 700;
             font-size: 1.4em;
-            text-decoration: underline;
-            padding: 8px 16px;
-            border: 2px solid #003AE7;
-            border-radius: 20px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            letter-spacing: 0.02em;
         }
-        .about-link:hover {
-            background-color: #003AE7;
-            color: white;
-        }
-        .about-page p {
-            line-height: 1.6;
-            margin-bottom: 1.5em;
-        }
-        @media (max-width: 768px) {
-            .title {
-                font-size: 3em;
-            }
-            
-            .phone-number {
-                font-size: 2em;
-            }
-            
-            footer {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-                padding: 10px;
-            }
-        }
-        .call-details {
+
+        .nav-links {
             display: flex;
-            gap: 25px;
-            justify-content: center;
-            align-items: center;
-            color: #003AE7;
-            font-size: 1.1em;
-            margin: 15px 0 25px 0;
-            opacity: 0.9;
+            gap: 32px;
         }
 
-        .call-details i {
-            color: #00b300;
-            margin: 0 5px 0 15px;
-        }
-
-        .example-questions {
-            background: rgba(0, 58, 231, 0.05);
-            padding: 25px 35px;
-            border-radius: 15px;
-            margin-top: 25px;
-            box-shadow: 
-                0 4px 12px rgba(0, 58, 231, 0.08),
-                0 1px 3px rgba(0, 58, 231, 0.05);
-            position: relative;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInDown 0.8s ease-out 0.8s backwards;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .example-questions:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 6px 16px rgba(0, 58, 231, 0.12),
-                0 2px 4px rgba(0, 58, 231, 0.08);
-        }
-
-        #typed {
-            font-size: 1.5em;
-            color: #003AE7;
+        .nav-link {
+            color: #000;
+            text-decoration: none;
+            font-size: 1em;
             font-weight: 500;
-            font-style: italic;
         }
 
-        .quote-mark {
-            font-family: Georgia, serif;
-            font-size: 2em;
-            color: rgba(0, 58, 231, 0.3);
-            line-height: 0;
-            vertical-align: middle;
-            padding: 0 5px;
-        }
-
-        @media (max-width: 768px) {
-            .example-questions {
-                padding: 20px 25px;
-                margin: 15px;
-            }
-            #typed {
-                font-size: 1.2em;
-            }
-            .quote-mark {
-                font-size: 1.6em;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Add some bottom padding to main content to prevent footer overlap */
         #main-content {
-            padding-bottom: 60px;  /* Adjust based on footer height */
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 0 48px;
+            min-height: 85vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
-        @media (max-width: 768px) {
-            footer {
-                padding: 12px 15px;
-                font-size: 0.8em;
-            }
+        #main-content::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239BA4FF' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
         }
 
-        .contact-section {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(0, 58, 231, 0.1);
+        .title {
+            font-size: 4.5em;
+            line-height: 1;
+            margin: 0 0 32px 0;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #000;
+        }
+
+        .subtitle {
+            font-size: 1.25em;
+            line-height: 1.5;
+            color: #666;
+            margin-bottom: 48px;
+            max-width: 520px;
+        }
+
+        .phone-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
             margin-bottom: 40px;
         }
 
-        .contact-section h2 {
-            color: #003AE7;
-            font-size: 1.5em;
-            margin-bottom: 15px;
+        .phone-number {
+            background: linear-gradient(135deg, #4A4FFF 0%, #3D42FF 100%);
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.3em;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(74, 79, 255, 0.2);
+            transition: transform 0.2s ease;
         }
 
-        .contact-options {
-            margin-top: 20px;
-            font-size: 1em;
+        .phone-number:hover {
+            transform: translateY(-2px);
         }
 
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: #003AE7;
+        .free-trial-link {
+            color: #000;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
             font-size: 1em;
-            white-space: nowrap;
+            font-weight: 500;
         }
 
-        @media (max-width: 768px) {
-            .about-page {
-                font-size: 1em;
-                margin: 10px;
-                padding: 15px;
-                padding-bottom: 150px;
-            }
-
-            .about-section h1 {
-                font-size: 1.8em;
-                margin-top: 40px;
-            }
-
-            .about-section p {
-                font-size: 1em;
-                line-height: 1.5;
-                margin-bottom: 1.2em;
-            }
-
-            .contact-section {
-                margin-top: 30px;
-                padding-top: 20px;
-            }
-
-            .contact-section h2 {
-                font-size: 1.3em;
-            }
-
-            .contact-link {
-                font-size: 1em;
-                padding: 8px 15px;
-            }
-
-            .back-button {
-                margin-bottom: 80px;
-                display: inline-block;
-            }
-
-            body {
-                height: auto;
-                min-height: 100vh;
-            }
+        .trust-badges {
+            display: flex;
+            gap: 24px;
+            background: rgba(74, 79, 255, 0.05);
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-top: 32px;
+            flex-wrap: wrap;
         }
 
-        .about-section h1 {
-            margin-top: 80px;  /* Increased to account for About button */
-            color: #003AE7;
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.85em;
+            padding: 4px 0;
+        }
+
+        .image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+
+        #features {
+            max-width: 1200px;
+            margin: 0 auto 120px;
+            padding: 0 48px;
+        }
+
+        .features-title {
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 32px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
             font-size: 2em;
-            margin-bottom: 30px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #4A4FFF 0%, #3D42FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @media (max-width: 768px) {
-            .about-section h1 {
-                margin-top: 60px;  /* Adjusted for mobile but still providing space */
-                font-size: 1.8em;
-                margin-bottom: 25px;
-            }
+        .feature-card h3 {
+            font-size: 1.4em;
+            margin: 16px 0;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        #contact {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 48px;
+            text-align: center;
+        }
+
+        .contact-container {
+            padding: 60px;
+            background: #f8f8f8;
+            border-radius: 24px;
+        }
+
+        #contact h2 {
+            font-size: 2em;
+            margin: 0 0 16px 0;
+            font-weight: 700;
+        }
+
+        #contact p {
+            color: #666;
+            font-size: 1.1em;
+            margin: 0 0 32px 0;
+        }
+
+        .contact-email {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.2em;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-email:hover {
+            transform: scale(1.02);
+        }
+
+        .example-questions {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 48px;
+            max-width: 520px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+        }
+
+        .questions-container {
+            position: relative;
+            height: 32px;
+            flex: 1;
+            margin-left: 12px;
+        }
+
+        .question-text {
+            font-weight: 500;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .question-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            content: "📍";
         }
     </style>
 </head>
 <body>
-    <div class="about-link" onclick="showAbout()">About</div>
-    
+    <header>
+        <a href="#" class="header-logo">JEANIE</a>
+        <nav class="nav-links">
+            <a href="#features" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
     <div id="main-content">
-        <div class="title">JEANIE</div>
-        <div class="subtitle">Your Personal AI Assistant, Just a Phone Call Away</div>
-        <div class="phone-number">+44 1666 333763</div>
-        <div class="call-details">
-            <span><i class="fa fa-check"></i> Free calls</span>
-            <span><i class="fa fa-check"></i> No account needed</span>
-        </div>
-        <div class="example-questions">
-            <span class="quote-mark">"</span><span id="typed"></span><span class="quote-mark">"</span>
-        </div>
-    </div>
-
-    <div id="about-page" class="about-page">
-        <div class="about-section">
-            <h1>About Jeanie</h1>
-
-            <p>Jeanie is your friendly AI assistant, available anytime through a simple phone call. Need to find a late-night pharmacy? Want to know what's playing at the theatre? Looking for a reminder to call your mum? Just pick up the phone and ask – no apps, no passwords, just a natural conversation.</p>
-
-            <p>We believe AI assistance should be available to everyone, regardless of tech-savviness or the type of phone they use. That's why we created Jeanie to work through the most natural interface of all – voice. Whether you're calling from a landline or smartphone, Jeanie is here to help make your day a little easier.</p>
-
-            <p>And this is just the beginning. Soon you'll be able to book rides, check medical symptoms, book hairdressers, and much more – all through a simple phone call. Jeanie's capabilities are expanding every day as we build new integrations and features to make your life easier.</p>
-
-            <p>While Jeanie is currently in beta and growing every day, we're excited to have you join us on this journey. Together, we're building a future where powerful, privacy-focused AI assistance is just a phone call away.</p>
-
-            <div class="contact-section">
-                <h2>Get in Touch</h2>
-                <p>We'd love to hear your feedback and suggestions as we continue to improve Jeanie.</p>
-                
-                <div class="contact-options">
-                    <a href="mailto:hello.jeanie@icloud.com" class="contact-link">
-                        <i class="fa fa-envelope"></i>
-                        hello.jeanie@icloud.com
-                    </a>
-                    <!-- Optional social links could go here later -->
+        <div class="text-content">
+            <h1 class="title">Your AI Assistant, Just a Call Away</h1>
+            <p class="subtitle">Experience the future of AI assistance through simple phone calls. No apps, no downloads - just natural conversations that get things done.</p>
+            <p class="example-questions">
+                💬 <span class="questions-container">
+                    <span class="question-text active">"Can you help me schedule a doctor's appointment?"</span>
+                    <span class="question-text">"What's the weather like today in London?"</span>
+                    <span class="question-text">"Remind me to call Mom tomorrow at 2 PM."</span>
+                    <span class="question-text">"Find me a good Italian restaurant nearby."</span>
+                </span>
+            </p>
+            
+            <div class="phone-section">
+                <div class="phone-number">+44 1666 333763</div>
+                <a href="#" class="free-trial-link">Try 14 Days Free →</a>
+            </div>
+            
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <span>🔒 Secure Conversations</span>
+                </div>
+                <div class="trust-badge">
+                    <span>🕒 Always Available</span>
+                </div>
+                <div class="trust-badge">
+                    <span>⚡ No Setup Required</span>
                 </div>
             </div>
         </div>
-        <div class="back-button" onclick="showMain()">Back to Home</div>
+        
+        <div class="image-container">
+            <img src="/lady.svg" class="hero-image" alt="Illustration of person using phone">
+        </div>
     </div>
 
-    <footer>
-        <div style="padding-left: 20px;">&copy; Jeanie 2024</div>
-        <div style="padding-right: 10px;">hello.jeanie@icloud.com</div>
-    </footer>
+    <section id="features">
+        <h2 class="features-title">Why Choose Jeanie?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🗣️</div>
+                <h3>Natural Conversations</h3>
+                <p>Chat naturally as you would with a friend. No need to memorize commands or specific phrases - Jeanie understands your everyday language.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Smart Web Search</h3>
+                <p>Get instant answers to your questions, from quick facts to detailed research. Jeanie searches the web and summarizes information for you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3>Personal Assistant</h3>
+                <p>Set reminders, schedule appointments, and manage your calendar with simple voice commands. Never miss an important date again.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚂</div>
+                <h3>Travel Updates</h3>
+                <p>Access real-time train schedules, traffic updates, and public transport information. Plan your journey with live travel insights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3>Local Discovery</h3>
+                <p>Find nearby restaurants, shops, and services with personalized recommendations based on your preferences and location.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure & Private</h3>
+                <p>Your conversations are protected with end-to-end encryption. Your privacy is our priority, with no data storage or third-party sharing.</p>
+            </div>
+        </div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <section id="contact">
+        <div class="contact-container">
+            <h2>We'd Love Your Feedback</h2>
+            <p>Help us make Jeanie even better for you. Share your thoughts or questions.</p>
+            <a href="mailto:hello@jeanie.ai" class="contact-email">hello@jeanie.ai</a>
+        </div>
+    </section>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var typed = new Typed("#typed", {
-                strings: [
-                    "What's the fastest route to Oxford Street right now?",
-                    "When does the pharmacy on High Street close today?",
-                    "Set dentist appointment tomorrow at 2pm",
-                    "What's the weather like this weekend?",
-                    "Find me a good Italian restaurant nearby",
-                    "What time is the next train to Cambridge?",
-                    "Is there a GP open near me?",
-                    "What movies are showing at the Odeon tonight?",
-                    "When does the post office close today?",
-                    "What's the best coffee shop open right now?"
-                ],
-                typeSpeed: 50,
-                backSpeed: 30,
-                loop: true,
-                showCursor: false
-            });
-        });
+        const questions = document.querySelectorAll('.question-text');
+        let currentQuestion = 0;
 
-        function showAbout() {
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('about-page').style.display = 'block';
-            document.querySelector('.about-link').style.display = 'none';
-            document.body.classList.add('about-shown');
+        function showNextQuestion() {
+            questions[currentQuestion].classList.remove('active');
+            currentQuestion = (currentQuestion + 1) % questions.length;
+            questions[currentQuestion].classList.add('active');
         }
 
-        function showMain() {
-            document.getElementById('about-page').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            document.querySelector('.about-link').style.display = 'block';
-            document.body.classList.remove('about-shown');
-        }
+        setInterval(showNextQuestion, 3000);
     </script>
 </body>
 </html>
