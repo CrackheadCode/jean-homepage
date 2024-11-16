@@ -194,11 +194,53 @@
             margin: 0 auto;
             text-align: center;
         }
+
+        /* Add mobile menu styles */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4em;
+            padding: 8px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 16px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            header {
+                padding: 12px 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <a href="/" class="header-logo">Jeanie</a>
+        <button class="mobile-menu-button" aria-label="Toggle menu">
+            <span class="hamburger">☰</span>
+        </button>
         <nav class="nav-links">
             <a href="/#about-section" class="nav-link">About</a>
             <a href="/#features-section" class="nav-link">Features</a>
@@ -251,5 +293,26 @@
             <p>&copy; 2024 Jeanie AI Assistant by Finlay Schlieper</p>
         </div>
     </footer>
+
+    <!-- Add mobile menu toggle script -->
+    <script>
+        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.mobile-menu-button') && !e.target.closest('.nav-links')) {
+                document.querySelector('.nav-links').classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
