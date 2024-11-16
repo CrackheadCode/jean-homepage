@@ -1094,14 +1094,6 @@
 
         .mobile-menu {
             display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 16px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 1001;
         }
 
         .mobile-menu-links {
@@ -1262,11 +1254,69 @@
                 padding: 10px 20px;
             }
         }
+
+        /* Add new mobile menu styles */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4em;
+            padding: 8px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 16px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            /* Adjust header for mobile */
+            header {
+                padding: 12px 20px;
+            }
+
+            /* Resize banner for mobile */
+            .dev-banner {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            .dev-banner-content {
+                gap: 8px;
+            }
+
+            /* Remove bottom margin since we removed bottom menu */
+            footer {
+                margin-bottom: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <a href="#" class="header-logo">Jeanie</a>
+        <button class="mobile-menu-button" aria-label="Toggle menu">
+            <span class="hamburger">☰</span>
+        </button>
         <nav class="nav-links">
             <a href="#about-section" class="nav-link">About</a>
             <a href="#features-section" class="nav-link">Features</a>
@@ -1374,23 +1424,6 @@
         </div>
     </div>
 
-    <nav class="mobile-menu">
-        <div class="mobile-menu-links">
-            <a href="#about-section" class="mobile-menu-link">
-                <span class="mobile-menu-icon">ℹ️</span>
-                <span>About</span>
-            </a>
-            <a href="#features-section" class="mobile-menu-link">
-                <span class="mobile-menu-icon">✨</span>
-                <span>Features</span>
-            </a>
-            <a href="/contact.html" class="mobile-menu-link">
-                <span class="mobile-menu-icon">📞</span>
-                <span>Contact</span>
-            </a>
-        </div>
-    </nav>
-
     <script>
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
@@ -1463,6 +1496,25 @@
                 logoTrack.style.animationPlayState = 'running';
             });
         }
+
+        // Replace mobile menu script with dropdown toggle
+        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.mobile-menu-button') && !e.target.closest('.nav-links')) {
+                document.querySelector('.nav-links').classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
