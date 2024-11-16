@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Jeanie AI Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Common styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Jost', sans-serif;
+            background: #ffffff;
+            color: #000;
+        }
+
+        header {
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(248,248,255,0.95));
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+        }
+
+        .header-logo {
+            color: #000;
+            font-weight: 700;
+            font-size: 1.4em;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            color: #000;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        /* Contact specific styles */
+        .contact {
+            padding: 120px 24px 80px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(74, 79, 255, 0.08);
+            color: #4A4FFF;
+            border-radius: 100px;
+            font-size: 0.95em;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 16px;
+        }
+
+        .contact-title {
+            font-size: 2.5em;
+            margin: 16px 0;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3em;
+            line-height: 1.6;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(74, 79, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 48px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 1px solid rgba(74, 79, 255, 0.2);
+            border-radius: 8px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1em;
+            background: white;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(74, 79, 255, 0.5);
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #4A4FFF 0%, #3D42FF 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 79, 255, 0.2);
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .contact {
+                padding: 100px 20px 60px;
+            }
+
+            .contact-container {
+                padding: 32px 24px;
+            }
+
+            .contact-title {
+                font-size: 2em;
+            }
+
+            .contact-subtitle {
+                font-size: 1.1em;
+            }
+        }
+
+        footer {
+            padding: 16px 24px;
+            color: #999;
+            font-size: 0.85em;
+            background: #f8f9ff;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="header-logo">Jeanie</a>
+        <nav class="nav-links">
+            <a href="/#about-section" class="nav-link">About</a>
+            <a href="/#features-section" class="nav-link">Features</a>
+            <a href="/contact.html" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact">
+            <div class="contact-header">
+                <span class="contact-badge">Get in Touch</span>
+                <h1 class="contact-title">Contact Us</h1>
+                <p class="contact-subtitle">Questions, feedback, or need support? We're here to help.</p>
+            </div>
+
+            <div class="contact-container">
+                <form class="contact-form" action="https://formspree.io/f/xbljybon" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact">Email or Phone Number</label>
+                        <input type="text" id="contact" name="contact" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <p>We'll get back to you within 1-2 business days</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Jeanie AI Assistant by Finlay Schlieper</p>
+        </div>
+    </footer>
+</body>
+</html>
