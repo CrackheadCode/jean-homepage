@@ -299,10 +299,19 @@
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .footer-content p {
-            margin: 0;
+        .footer-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: #4A4FFF;
         }
 
         @media (max-width: 768px) {
@@ -1423,7 +1432,9 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Jeanie AI Assistant by Finlay Schlieper</p>
+            <p>&copy; 2024 Jeanie AI Assistant by Finlay Schlieper • 
+            <a href="/privacy.html" class="footer-link">Privacy Policy</a> • 
+            <a href="/terms.html" class="footer-link">Terms of Service</a></p>
         </div>
     </footer>
 
