@@ -12,44 +12,51 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Jost', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #ffffff;
             color: #000;
         }
 
         header {
-            padding: 24px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(248,248,255,0.95));
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
+            padding: 16px 48px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .header-logo {
-            color: #000;
-            font-weight: 700;
-            font-size: 1.4em;
+            color: black;
             text-decoration: none;
-            letter-spacing: 0.02em;
+            font-weight: 500;
+            font-size: 1.1em;
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 24px;
+            align-items: center;
         }
 
         .nav-link {
-            color: #000;
+            color: black;
             text-decoration: none;
             font-size: 1em;
+        }
+
+        .nav-link.phone {
+            background: #8A2BE2;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-weight: 500;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .nav-link.phone:hover {
+            background: #6A0DAD;
         }
 
         /* Contact specific styles */
@@ -67,8 +74,8 @@
         .contact-badge {
             display: inline-block;
             padding: 10px 20px;
-            background: rgba(74, 79, 255, 0.08);
-            color: #4A4FFF;
+            background: rgba(138, 43, 226, 0.08);
+            color: #8A2BE2;
             border-radius: 100px;
             font-size: 0.95em;
             font-weight: 500;
@@ -92,7 +99,7 @@
         .contact-container {
             background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
             border-radius: 24px;
-            border: 1px solid rgba(74, 79, 255, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.1);
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             padding: 48px;
         }
@@ -117,7 +124,7 @@
         .form-group input,
         .form-group textarea {
             padding: 12px 16px;
-            border: 1px solid rgba(74, 79, 255, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.2);
             border-radius: 8px;
             font-family: 'Jost', sans-serif;
             font-size: 1em;
@@ -133,11 +140,11 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: rgba(74, 79, 255, 0.5);
+            border-color: rgba(138, 43, 226, 0.5);
         }
 
         .submit-button {
-            background: linear-gradient(135deg, #4A4FFF 0%, #3D42FF 100%);
+            background: linear-gradient(135deg, #8A2BE2 0%, #6A0DAD 100%);
             color: white;
             border: none;
             padding: 14px 32px;
@@ -151,7 +158,7 @@
 
         .submit-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(74, 79, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.2);
         }
 
         .contact-info {
@@ -162,6 +169,44 @@
 
         .contact-info p {
             margin: 8px 0;
+        }
+
+        footer {
+            background: #f8f9ff;
+            padding: 24px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-link a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link a:hover {
+            color: #8A2BE2;
+        }
+
+        .footer-bottom {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer-content span:not(:last-child)::after {
+            content: "•";
+            margin: 0 8px;
+            color: #666;
         }
 
         @media (max-width: 768px) {
@@ -181,70 +226,14 @@
                 font-size: 1.1em;
             }
         }
-
-        footer {
-            padding: 16px 24px;
-            color: #999;
-            font-size: 0.85em;
-            background: #f8f9ff;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        /* Add mobile menu styles */
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.4em;
-            padding: 8px;
-            cursor: pointer;
-            color: #000;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-button {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                padding: 16px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            header {
-                padding: 12px 20px;
-            }
-        }
     </style>
 </head>
 <body>
     <header>
-        <a href="/" class="header-logo">Jeanie</a>
-        <button class="mobile-menu-button" aria-label="Toggle menu">
-            <span class="hamburger">☰</span>
-        </button>
+        <a href="/" class="header-logo">Jeanie.</a>
         <nav class="nav-links">
-            <a href="/#about-section" class="nav-link">About</a>
-            <a href="/#features-section" class="nav-link">Features</a>
             <a href="/contact.html" class="nav-link">Contact</a>
+            <a href="tel:+441666333763" class="nav-link phone">+44 1666 333 763</a>
         </nav>
     </header>
 
@@ -290,29 +279,10 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Jeanie AI Assistant by Finlay Schlieper</p>
+            <span class="footer-link"><a href="/terms.html">Terms of Service</a></span>
+            <span class="footer-link"><a href="/privacy.html">Privacy Policy</a></span>
+            <span class="footer-bottom">&copy; 2024 Jeanie by Finlay Schlieper</span>
         </div>
     </footer>
-
-    <!-- Add mobile menu toggle script -->
-    <script>
-        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.mobile-menu-button') && !e.target.closest('.nav-links')) {
-                document.querySelector('.nav-links').classList.remove('active');
-            }
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-    </script>
 </body>
 </html>
