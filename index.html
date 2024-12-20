@@ -3,35 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeanie | Your Personal AI Assistant</title>
+    <title>Jeanie</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <style>
-        /* Update base styles */
+        /* Reset and base styles */
         body {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #ffffff;
-            color: #000;
+            font-family: 'Jost', sans-serif;
+            background: #E9E5D7; 
+            color: #323232; 
+            line-height: 1.6;
+            position: relative;
         }
 
-        /* Updated header styles */
+        /* Add gridlines */
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            background: #c9c7bf;
+            z-index: -1;
+        }
+
+        body::before {
+            top: 0;
+            bottom: 0;
+            left: 5%;
+            width: 1px;
+        }
+
+        body::after {
+            top: 0;
+            bottom: 0;
+            right: 5%;
+            width: 1px;
+        }
+
+        header::before, header::after {
+            content: "";
+            position: absolute;
+            background: #c9c7bf;
+            z-index: -1;
+        }
+
+        header::before {
+            height: 1px;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        header::after {
+            height: 1px;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Header styling */
         header {
+            padding: 20px calc(5% + 20px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 48px;
-            max-width: 1400px;
-            margin: 0 auto;
+            position: relative;
         }
 
         .header-logo {
-            color: black;
+            color: #323232; 
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1em;
+            font-size: 1.5em;
+            font-weight: bold;
         }
 
         .nav-links {
@@ -41,479 +86,334 @@
         }
 
         .nav-link {
-            color: black;
             text-decoration: none;
-            font-size: 1em;
+            color: #323232; 
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
         }
 
         .nav-link.phone {
-            background: #8A2BE2;
-            color: white;
+            border: 1px solid #323232; 
             padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: background 0.3s ease; /* Smooth transition */
+            border-radius: 4px;
         }
 
-        .nav-link.phone:hover {
-            background: #6A0DAD; /* Darker purple on hover */
-        }
-
-        /* Updated hero section */
+        /* Hero section */
         .hero {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 48px 48px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: start;
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 calc(5% + 20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
         }
 
         .hero-content {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
+            flex: 1;
+            order: 1; 
         }
 
-        /* Updated title */
         .title {
             font-size: 2.8em;
-            line-height: 1.1;
-            margin: 0 0 32px 0;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            max-width: 800px;
+            line-height: 1.2;
+            margin: 0 0 24px 0;
+            font-weight: bold;
+            color: #323232;
         }
 
-        .title .line-break {
-            display: block;
-        }
-
-        /* Updated subtitle styles */
-        .subtitle {
-            font-size: 1.4em;
-            color: #444;
-            margin: 0 0 40px 0;
-            position: relative;
-            min-height: 2.5em;
-            display: flex;
-            align-items: flex-start;
-            white-space: nowrap;
-            line-height: 1.4;
-        }
-
-        .subtitle span {
-            position: relative;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            margin-left: 8px;
-            display: none;
-            max-width: 1000px;
-            white-space: normal;
-            margin-top: 0;
-            padding-top: 0;
-        }
-
-        .subtitle-prefix {
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-weight: 500;
-        }
-
-        .subtitle span.active {
-            opacity: 1;
-            visibility: visible;
-            display: inline;
-        }
-
-        /* Updated benefits list */
-        .benefit-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 40px 0;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        @media (min-width: 1024px) {
-            .benefit-list {
-                grid-template-columns: 1fr 1fr; /* Two columns for wide screens */
-            }
-        }
-
-        .benefit-list li {
+        .ask-anything-container {
             display: flex;
             align-items: center;
+            margin-top: 24px;
+            flex-wrap: wrap;
             gap: 8px;
-            color: #444;
-            font-size: 1.2em;
-            margin-bottom: 0;
-            white-space: nowrap; /* Prevent line breaks */
         }
 
-        .benefit-list li:before {
-            content: "✓";
-            color: #22C55E;
+        .ask-anything {
             font-size: 1.4em;
             font-weight: bold;
-            margin-right: 8px;
+            color: #323232; 
         }
 
-        /* Updated CTA button */
+        .slideshow {
+            font-size: 1.4em;
+            color: #323232;
+            font-weight: bold;
+        }
+
+        .slideshow span {
+            display: none;
+        }
+
+        .slideshow span.active {
+            display: inline;
+            animation: fade 3s infinite;
+        }
+
+        @keyframes fade {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Checklist */
+        .checklist {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            font-size: 1.1em;
+            margin-top: 24px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .check-item > span{
+            display: flex;
+            align-items: center;
+        }
+
+        .check-icon {
+            color: #24534B; /* Changed back to green */
+            font-size: 1.5em;
+        }
+
         .cta-button {
-            background: #8A2BE2;
-            color: white;
-            padding: 24px 48px;
-            border-radius: 50px;
-            text-align: center;
-            max-width: 400px;
-            font-size: 1.6em;
-            font-weight: 600;
-            text-decoration: none;
             display: inline-block;
-            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.2);
+            background: #24534B; /* Changed back to green */
+            color: #fff;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
             transition: all 0.3s ease;
-            margin: 0 auto;
-            margin-top: 16px;
+            margin-top: 32px;
+            white-space: nowrap;
         }
 
         .cta-button:hover {
-            background: #6A0DAD;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(138, 43, 226, 0.3);
+            background: #1E4A41; /* Changed back to green */
         }
 
-        .cta-secondary {
-            font-size: 0.5em;
-            margin-top: 8px;
-            display: block;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-
-        /* Updated image container */
-        .image-container {
-            align-self: flex-start;
-            margin-top: 48px;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: auto;
-            border-radius: 300px 300px 0 0;
-            object-fit: cover;
-        }
-
-        /* Wave background adjustments */
-        .wave-bg {
-            position: absolute;
-            bottom: -200px;
-            left: -100px;
-            right: -100px;
-            width: calc(100% + 200px);
-            z-index: -1;
-            overflow: visible;
-        }
-
-        .wave-bg img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Ensure container doesn't clip wave */
-        main {
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            min-height: calc(100vh - 85px); /* Subtract header height */
-            display: flex;
-            align-items: center;
-        }
-
-        @media (max-width: 1330px) {
-            .hero {
-                grid-template-columns: 1fr 1fr;
-                text-align: left;
-            }
-
-            .subtitle {
-                justify-content: flex-start;
-            }
-
-            .image-container {
-                margin-top: 0;
-                max-width: 100%;
-            }
-        }
-
-        /* Add smaller screen breakpoint */
-        @media (max-width: 768px) {
-            header {
-                padding: 16px 24px;
-            }
-
-            .nav-links {
-                gap: 16px;
-            }
-
-            .nav-link.phone {
-                padding: 6px 12px;
-                font-size: 0.9em;
-            }
-
-            .title {
-                font-size: 1.8em;
-                line-height: 1.2;
-            }
-
-            .hero-image {
-                border-radius: 150px 150px 0 0;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .footer-content span:not(:last-child)::after {
-                display: none;
-            }
-
-            .benefits-image-container {
-                flex-direction: column;
-            }
-
-            .benefit-list {
-                text-align: center;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 24px;
-            }
-
-            .subtitle {
-                justify-content: center;
-            }
-
-            .benefit-list {
-                text-align: center;
-            }
-        }
-
-        /* Add extra small screen breakpoint */
-        @media (max-width: 480px) {
-            .title {
-                font-size: 1.6em;
-            }
-            
-            .subtitle {
-                display: none; /* Hide subtitle completely */
-            }
-
-            .hero {
-                padding: 16px;
-                gap: 24px;
-            }
-
-            .benefit-list {
-                grid-template-columns: 1fr; /* Stack benefits vertically */
-                max-width: 300px; /* Limit width for better readability */
-                margin: 0 auto;
-            }
-
-            .benefit-list li {
-                white-space: normal; /* Allow text to wrap */
-                text-align: left; /* Align text to the left */
-                justify-content: flex-start; /* Align checkmark and text to the left */
-            }
-
-            .image-container {
-                max-width: 100%;
-            }
-
-            .benefit-list li {
-                white-space: normal; /* Allow text to wrap */
-                text-align: left; /* Align text to the left */
-                justify-content: flex-start; /* Align checkmark and text to the left */
-                font-size: 0.85em;
-                padding: 0 8px;
-            }
-
-            .benefit-list li u {
-                display: inline; /* Ensure underlined text is visible */
-            }
-
-            .benefit-list li u ~ * {
-                display: none; /* Hide non-underlined text */
-            }
-        }
-
-        /* Footer styles */
-        footer {
-            background: #f8f9ff;
-            padding: 24px;
-            margin-top: 40px;
+        /* About section */
+        .about {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 40px calc(5% + 20px);
             text-align: center;
         }
 
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
+        .about h2 {
+            font-size: 2.4em;
+            margin-bottom: 24px;
+            font-weight: bold;
+        }
+
+        .about p {
+            font-size: 1.2em;
+            margin: 0 auto 32px auto;
+            max-width: 800px;
+        }
+
+        .feature-cards {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr); 
+          grid-template-rows: repeat(2, 1fr);    
+          gap: 32px;
+          justify-content: center;              
+          margin: 0 auto;                       
+          max-width: 900px;                      
+        }
+
+        .feature-card {
+            background-color: #f5f5f5;
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #24534B; /* Changed back to green */
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 12px;
+            font-weight: 600;
         }
 
-        .footer-link a {
-            color: #666;
-            text-decoration: none;
-            font-size: 0.95em;
-            transition: color 0.2s ease;
+        .feature-card h3 i {
+            margin-right: 12px;
+            font-size: 1.4em;
         }
 
-        .footer-link a:hover {
-            color: #8A2BE2;
+        .feature-card p {
+            margin-top: 12px;
+            font-size: 1em;
+            line-height: 1.5;
         }
 
-        .footer-bottom {
-            color: #666;
+        /* Hero Image */
+        .hero-image {
+          flex: 1;
+          order: 2; 
+        }
+
+        .hero-image img {
+            border-radius: 12px;
+            max-width: 100%;
+            height: auto;
+        }
+        /* Contact Section Styles */
+        .contact {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 40px;
+            border: 1px solid #c9c7bf;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-badge {
+            background-color: #24534B; /* Changed back to green */
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             font-size: 0.9em;
         }
 
-        .footer-content span:not(:last-child)::after {
-            content: "•";
-            margin: 0 8px;
-            color: #666;
+        .contact-title {
+            font-size: 2.4em;
+            margin: 10px 0;
+            color: #24534B; /* Changed back to green */
         }
 
-        @media (max-width: 1150px) {
-            .hero-content {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .subtitle {
-                order: 2;
-                margin-bottom: 32px; /* Add space between subtitle and benefits */
-            }
-
-            .benefit-list {
-                order: 3;
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
-                width: 100%;
-                max-width: 600px;
-                margin: 0 auto;
-                margin-top: 24px; /* Add space above benefits */
-            }
-
-            .benefit-list li {
-                white-space: normal;
-                font-size: 1em;
-            }
-
-            .cta-button {
-                order: 4;
-                margin-top: 32px; /* Add space above CTA button */
-            }
-
-            .benefit-list li u ~ * {
-                display: none; /* Hide text after the underlined portion */
-            }
-            
-            .benefit-list li u {
-                display: inline; /* Ensure underlined text remains visible */
-            }
+        .contact-subtitle {
+            font-size: 1.1em;
+            color: #333;
         }
 
-        @media (max-width: 900px) {
-            .subtitle::after {
-                margin-bottom: 24px; /* Add space below the static question */
-            }
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 95%;
+            padding: 12px;
+            border: 1px solid #c9c7bf;
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: #24534B; /* Changed back to green */
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
+        }
+
+        .submit-button:hover {
+            background-color: #1E4A41; /* Changed back to green */
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 0.9em;
+            padding: 20px;
+            background: #c9c7bf;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #323232;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1050px) {
+          .hero {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .hero-content {
+              order: 1;
+              margin-bottom: 20px;
+          }
+          .hero-image{
+            order: 2;
+          }
+          .ask-anything-container {
+              justify-content: center;
+          }
+          .cta-button {
+              padding: 16px 20px;
+          }
+          .check-item{
+            justify-content: center;
+          }
         }
 
         @media (max-width: 768px) {
-            .benefit-list {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-
-            .benefit-list li {
-                font-size: 0.9em;
-                justify-content: flex-start;
-                padding: 0 16px; /* Add some padding on the sides */
-            }
-        }
-
-        @media (max-width: 560px) {
-            .benefit-list {
-                max-width: 100%;
-            }
-
-            .benefit-list li {
-                font-size: 0.85em;
-                padding: 0 8px;
-            }
-        }
-
-        @media (max-width: 1280px) {
-            .hero {
-                grid-template-columns: 1fr 1fr;
-                padding-right: 0;
-            }
-
-            .image-container {
-                margin-top: 0;
-                margin-right: -48px;
-            }
-
-            .hero-image {
-                content: url('/man_rectangle.png');
-                width: 100%;
-                height: auto;
-                border-radius: 0;
-            }
-        }
-
-        @media (max-width: 950px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 24px;
-            }
-
-            .image-container {
-                display: none;
-            }
-
-            .subtitle {
-                display: none;
-            }
-
-            .hero-content {
-                align-items: center;
-            }
-
-            .benefit-list {
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-
-            .benefit-list li {
-                font-size: 1.2em;
-                white-space: normal;
-            }
+          .checklist {
+              grid-template-columns: 1fr;
+          }
+          .feature-cards {
+              grid-template-columns: 1fr; 
+              grid-template-rows: auto;   
+          }
         }
     </style>
 </head>
@@ -521,77 +421,116 @@
     <header>
         <a href="#" class="header-logo">Jeanie.</a>
         <nav class="nav-links">
-            <a href="/contact.html" class="nav-link">Contact</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Contact</a>
             <a href="tel:+441666333763" class="nav-link phone">+44 1666 333 763</a>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <h1 class="title">Find information, set reminders and more, all with a simple phone call</h1>
-                <h2 class="subtitle">
-                    Ask anything:
-                    <span class="active">"What's the weather like tomorrow?"</span>
-                    <span>"Find a trusted electrician nearby."</span>
-                    <span>"Remind me to take my medication at 9am."</span>
-                    <span>"What time does the pharmacy close today?"</span>
-                    <span>"Whats the latest news?"</span>
-                    <span>"What's on at the local theatre?"</span>
-                </h2>
-                <ul class="benefit-list">
-                    <li><u>No registration</u><span class="extended-text"> required</span></li>
-                    <li><u>Up-to-date</u><span class="extended-text"> information</span></li>
-                    <li><u>No internet</u><span class="extended-text">- mobile or landline</span></li>
-                    <li><u>Natural</u><span class="extended-text"> language</span></li>
-                </ul>
-                
-                <a href="tel:+441666333763" class="cta-button">
-                    +44 1666 333763
-                    <span class="cta-secondary">Try FREE today!</span>
-                </a>
+            <div class="hero-image">
+                <img src="./man_rectangle.png" alt="Man happily using Jeanie phone assistant">
             </div>
-            
-            <div class="image-container">
-                <img src="/elderly_man.png" alt="Elderly person using phone" class="hero-image">
+            <div class="hero-content">
+                <h1 class="title">Say Hello to Jeanie - Your AI Assistant on Call</h1>
+                <div class="ask-anything-container">
+                    <div class="ask-anything">Ask Anything:</div>
+                    <div class="slideshow">
+                        <span class="active">What’s the weather tomorrow?</span>
+                        <span>Set a reminder for 3 PM.</span>
+                        <span>Find a pharmacy near me.</span>
+                        <span>Connect me to the local pizza place.</span>
+                        <span>What are today’s headlines?</span>
+                    </div>
+                </div>
+                <p>No smartphone? No problem. Just give us a call, and Jeanie will assist you with everything you need, anytime, anywhere.</p>
+                <div class="checklist">
+                    <div class="check-item"><span class="check-icon">✔</span><span>No registration required</span></div>
+                    <div class="check-item"><span class="check-icon">✔</span><span>Up-to-date information</span></div>
+                    <div class="check-item"><span class="check-icon">✔</span><span>No internet – mobile or landline</span></div>
+                    <div class="check-item"><span class="check-icon">✔</span><span>Natural language</span></div>
+                </div>
+                <a href="tel:+441666333763" class="cta-button">Call Free today: +44 1666 333 763</a>
+            </div>
+            </section>
+
+        <section class="about" id="about">
+            <h2>About Jeanie: Accessible Intelligence</h2>
+            <p>Jeanie is a user-friendly, on-call AI assistant designed for simplicity and accessibility. Powered by the latest voice technology, 
+                she provides a seamless experience for users who may not have access to smartphones prefer or prefer a traditional phone call. 
+            </p>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <h3><i class="fas fa-search"></i> Find Information</h3>
+                    <p>Jeanie quickly searches the web to bring you the latest information. Whether it's news, facts, or figures, Jeanie delivers accurate,up-to-date and concise answers.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Connect to local places & services</h3>
+                    <p>Jeanie can use smart maps to find what you need nearby.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-phone-alt"></i> Communication and Task Management</h3>
+                    <p>Jeanie makes communication a breeze. It can forward your calls and help you set reminders using simple voice commands, all while keeping your information private.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-bus"></i> Transit and Mobility</h3>
+                    <p>Jeanie keeps you updated on public transit. It provides real-time schedules and helps you plan your travel, making your journey smoother.</p>
+                </div>
+            </div>
+        </section>
+        <section class="contact" id="contact">
+            <div class="contact-header">
+                <span class="contact-badge">Get in Touch</span>
+                <h1 class="contact-title">Contact Us</h1>
+                <p class="contact-subtitle">Questions, feedback, or need support? We're here to help.</p>
             </div>
 
-            <!-- <div class="wave-bg">
-                <img src="/wave_cropped.svg" alt="Decorative wave">
-            </div> -->
+            <div class="contact-container">
+                <form class="contact-form" action="https://formspree.io/f/xbljybon" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact">Email or Phone Number</label>
+                        <input type="text" id="contact" name="contact" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <p>We'll get back to you within 1-2 business days</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <span class="footer-link"><a href="/terms.html">Terms of Service</a></span>
-            <span class="footer-link"><a href="/privacy.html">Privacy Policy</a></span>
-            <span class="footer-bottom">&copy; 2024 Jeanie by Finlay Schlieper</span>
-        </div>
+        © Jeanie 2024 | <a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a>
     </footer>
 
     <script>
-        const slides = document.querySelectorAll('.subtitle span');
+        const slides = document.querySelectorAll('.slideshow span');
         let currentSlide = 0;
-        
-        function showNextSlide() {
-            // Hide current slide
-            slides[currentSlide].classList.remove('active');
-            
-            // Calculate next slide index
+        function showSlide() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
             currentSlide = (currentSlide + 1) % slides.length;
-            
-            // Show next slide after a small delay to ensure transition
-            setTimeout(() => {
-                slides[currentSlide].classList.add('active');
-            }, 50);
         }
-        
-        // Ensure first slide is visible on page load
-        slides[0].classList.add('active');
-        
-        // Change slide every 3 seconds
-        setInterval(showNextSlide, 3000);
+        setInterval(showSlide, 3000);
     </script>
 </body>
 </html>
